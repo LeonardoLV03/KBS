@@ -1,20 +1,23 @@
-;; Archivo: run.clp
-;; Descripcion: Carga todos los componentes del sistema y lo ejecuta.
+;; --- run.clp ---
+;; Script principal para ejecutar el Sistema de Recomendacion.
 
-;; 1. Cargar las plantillas (la estructura de los datos)
+;; 1. Cargar las definiciones de datos
 (load templates.clp)
-(printout t "Templates cargados." crlf)
+(printout t "Plantillas cargadas." crlf)
 
-;; 2. Cargar los hechos iniciales (los datos)
+;; 2. Cargar los hechos iniciales
 (load facts.clp)
 (printout t "Hechos cargados." crlf)
 
-;; 3. Cargar las reglas (la logica)
+;; 3. Cargar el motor de inferencia
 (load rules.clp)
 (printout t "Reglas cargadas." crlf crlf)
 
-;; 4. Preparar la memoria de trabajo con los hechos iniciales
+;; 4. Preparar la memoria de trabajo con los 'deffacts'
 (reset)
+(printout t "Sistema reseteado. Iniciando motor de inferencia..." crlf crlf)
 
-;; 5. Ejecutar el motor de inferencia
+;; 5. Ejecutar el sistema
 (run)
+
+(printout t crlf "--- Proceso de recomendacion completado ---" crlf)

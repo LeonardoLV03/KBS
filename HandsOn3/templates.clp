@@ -1,42 +1,38 @@
-;; Archivo: templates.clp
-;; Descripcion: Define las plantillas para los hechos del sistema.
+;; --- templates.clp ---
+;; Define las estructuras de datos (plantillas) 
+;; para el sistema de recomendacion del mercado.
 
 (deftemplate customer
-   (slot customer-id)
-   (multislot name)        ;; <-- Este es un multislot
-   (multislot address)
-   (slot phone)
+    (slot customer-id (type STRING))
+    (slot name (type STRING))
+    (multislot interests (type STRING)) ; Intereses del cliente
 )
 
 (deftemplate product
-   (slot part-number)
-   (slot name)
-   (slot category)
-   (slot price)
+    (slot part-number (type STRING))
+    (slot name (type STRING))
+    (slot category (type STRING))
+    (slot price (type FLOAT))
+    (slot stock (type INTEGER) (default 1))
 )
 
-(deftemplate order
-   (slot order-number)
-   (slot customer-id)
-)
-
+;; Usamos line-item para representar compras historicas
 (deftemplate line-item
-   (slot order-number)
-   (slot part-number)
-   (slot customer-id)
-   (slot quantity (default 1))
+    (slot order-number (type INTEGER))
+    (slot customer-id (type STRING))
+    (slot part-number (type STRING))
 )
 
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-;; CORRECCIÓN: Cambiado de 'slot' a 'multislot' para que coincida con 'customer'
-;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
-(deftemplate promo-contact
-    (multislot name)        ;; <-- CORREGIDO
-    (slot phone)
-    (slot message)
+;; Plantilla para un hecho "limpio" que indica una compra
+(deftemplate bought
+    (slot customer-id (type STRING))
+    (slot part-number (type STRING))
 )
 
+;; Plantilla para almacenar las recomendaciones generadas
 (deftemplate recommendation
-    (multislot customer-name) ;; <-- CORREGIDO
-    (slot product-name)
+    (slot customer-id (type STRING))
+    (slot part-number (type STRING))
+    (slot product-name (type STRING))
+    (slot reason (type STRING)) ; Por que recomendamos esto?
 )
