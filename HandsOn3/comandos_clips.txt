@@ -1,0 +1,25 @@
+(load "templates.clp")
+(load "facts.clp")
+(load "rules.clp")
+(reset)
+
+(assert (orden (marca apple) (modelo iphone16) (qty 1) (metodo-pago credito) (tarjeta-id "banamex-oro")))
+(run)
+
+(reset)
+(assert (orden (marca samsung) (modelo note21) (qty 30) (metodo-pago credito) (tarjeta-id "liverpool-visa")))
+(run)
+
+(reset)
+(assert (info-pago (metodo-pago contado)))
+(assert (orden (marca apple) (modelo iphone16) (qty 1) (metodo-pago contado) (tarjeta-id nil)))
+(assert (orden (marca apple) (modelo macbookair) (qty 1) (metodo-pago contado) (tarjeta-id nil)))
+(run)
+
+(reset)
+(assert (orden (marca apple) (modelo iphone16) (qty 1) (metodo-pago credito) (tarjeta-id "bbva-visa")))
+(run)
+
+(reset)
+(assert (orden (marca apple) (modelo macbookpro) (qty 1) (metodo-pago credito) (tarjeta-id "banamex-oro")))
+(run)

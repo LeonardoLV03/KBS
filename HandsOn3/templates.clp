@@ -1,38 +1,79 @@
-;; --- templates.clp ---
-;; Define las estructuras de datos (plantillas) 
-;; para el sistema de recomendacion del mercado.
+;; templates.clp
+;; Definicion de estructuras de datos
 
-(deftemplate customer
-    (slot customer-id (type STRING))
-    (slot name (type STRING))
-    (multislot interests (type STRING)) ; Intereses del cliente
+(deftemplate producto
+    (slot marca (type SYMBOL))
+    (slot modelo (type SYMBOL))
+    (slot categoria (type SYMBOL)) 
+    (slot precio (type FLOAT))
+    (slot stock (type INTEGER))
 )
 
-(deftemplate product
-    (slot part-number (type STRING))
-    (slot name (type STRING))
-    (slot category (type STRING))
-    (slot price (type FLOAT))
-    (slot stock (type INTEGER) (default 1))
+(deftemplate promo-banco
+    (slot banco (type SYMBOL))
+    (slot marca (type SYMBOL))
+    (slot modelo (type SYMBOL))
+    (slot meses-sin-interes (type INTEGER))
 )
 
-;; Usamos line-item para representar compras historicas
-(deftemplate line-item
-    (slot order-number (type INTEGER))
-    (slot customer-id (type STRING))
-    (slot part-number (type STRING))
+(deftemplate promo-accesorio
+    (slot categoria-trigger (type SYMBOL))
+    (slot accesorio-recomendado (type STRING))
+    (slot descuento (type FLOAT))
 )
 
-;; Plantilla para un hecho "limpio" que indica una compra
-(deftemplate bought
-    (slot customer-id (type STRING))
-    (slot part-number (type STRING))
+(deftemplate tarjeta-credito
+    (slot id (type SYMBOL)) 
+    (slot banco (type SYMBOL))
+    (slot grupo (type SYMBOL)) 
+    (slot exp-date (type STRING))
 )
 
-;; Plantilla para almacenar las recomendaciones generadas
-(deftemplate recommendation
-    (slot customer-id (type STRING))
-    (slot part-number (type STRING))
-    (slot product-name (type STRING))
-    (slot reason (type STRING)) ; Por que recomendamos esto?
+(deftemplate orden
+    (slot marca (type SYMBOL))
+    (slot modelo (type SYMBOL))
+    (slot qty (type INTEGER))
+    (slot metodo-pago (type SYMBOL)) 
+    (slot tarjeta-id (type SYMBOL) (default nil))
 )
+
+(deftemplate info-pago
+    (slot metodo-pago (type SYMBOL))
+)
+
+(deftemplate orden-procesando
+    (slot marca (type SYMBOL))
+    (slot modelo (type SYMBOL))
+    (slot categoria (type SYMBOL))
+    (slot qty (type INTEGER))
+    (slot metodo-pago (type SYMBOL))
+    (slot banco-tarjeta (type SYMBOL)) 
+    (slot precio-total (type FLOAT))
+)
+
+(deftemplate clasificacion-cliente
+    (slot tipo (type SYMBOL))
+)
+
+(deftemplate oferta-aplicada
+    (slot descripcion (type STRING))
+)
+
+(deftemplate recomendacion-promo
+    (slot descripcion (type STRING))
+)
+
+(deftemplate total-para-vales
+    (slot monto (type FLOAT) (default 0.0))
+)
+
+(deftemplate vale-generado
+    (slot monto (type FLOAT))
+)
+
+;; para las alertas de inventario
+(deftemplate alerta-stock
+    (slot descripcion (type STRING))
+)
+
+(deftemplate proceso-iniciado)
