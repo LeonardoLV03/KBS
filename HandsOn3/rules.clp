@@ -1,13 +1,12 @@
 ;; rules.clp
-;; Motor de inferencia con 21 reglas
 
-;; Regla de inicio
+;;Regla de bienvenida
 (defrule regla-bienvenida
     (declare (salience 100))
-    ?f <- (initial-fact)
+    ?f <- (inicio-proceso)
     =>
     (retract ?f)
-    (assert (proceso-iniciado))
+    (assert (proceso-activo))  ;; 
     (printout t ">>> Iniciando motor de reglas para nueva orden..." crlf crlf)
 )
 
@@ -206,7 +205,7 @@
 ;; Terminar el proceso
 (defrule imprimir-mensaje-final
     (declare (salience -100))
-    ?f <- (proceso-iniciado)
+    ?f <- (proceso-activo)
     =>
     (retract ?f)
     (printout t ">>> Procesamiento de orden finalizado. <<<" crlf crlf)

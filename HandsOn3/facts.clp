@@ -3,6 +3,8 @@
 ;; sobre productos, tarjetas y promociones.
 
 (deffacts catalogo-y-promociones
+
+    (inicio-proceso)
     
     ;; --- Catalogo de Productos ---
     (producto (marca apple) (modelo iphone16) (categoria smartphone) (precio 27000.0) (stock 50))

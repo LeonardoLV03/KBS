@@ -12,7 +12,6 @@
 (printout t "Simulacion 1: Cliente compra iPhone 16 con ID 'banamex-oro'" crlf)
 (reset) 
 
-;; CORREGIDO: Se quitaron las comillas de banamex-oro
 (assert (orden (marca apple) (modelo iphone16) (qty 1) (metodo-pago credito) (tarjeta-id banamex-oro)))
 (run)
 (printout t "------------------------------------------------" crlf crlf)
@@ -22,7 +21,6 @@
 (printout t "Simulacion 2: Cliente compra Samsung Note 21 con ID 'liverpool-visa'" crlf)
 (reset) 
 
-;; CORREGIDO: Se quitaron las comillas de liverpool-visa
 (assert (orden (marca samsung) (modelo note21) (qty 30) (metodo-pago credito) (tarjeta-id liverpool-visa)))
 (run)
 (printout t "------------------------------------------------" crlf crlf)
@@ -45,6 +43,3 @@
 (assert (orden (marca apple) (modelo iphone16) (qty 1) (metodo-pago credito) (tarjeta-id bbva-visa)))
 (run)
 (printout t "------------------------------------------------" crlf crlf)
-
-
-(printout t "--- Proceso de promociones completado ---" crlf)
